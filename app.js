@@ -1,5 +1,5 @@
 const supabaseUrl = "https://zlcqbtecztppsikhmnrl.supabase.co"
-const supabaseKey = "YOUR_ANON_KEY"
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsY3FidGVjenRwcHNpa2htbnJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNTE5NTEsImV4cCI6MjA4ODkyNzk1MX0.VMPl1Zijb5YU8v9ecXsYVMRFbG9S6PuIds6uek8ThRI"
 
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
