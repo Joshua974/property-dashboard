@@ -33,7 +33,7 @@ const results = document.getElementById("results")
 
 results.innerHTML=""
 
-if(!data || data.length===0){
+if(!data || data.length === 0){
 results.innerHTML="No results found"
 return
 }
