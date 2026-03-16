@@ -4,13 +4,13 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
-const input = document.getElementById("search")
+const searchInput = document.getElementById("search")
 
-input.addEventListener("keyup", async () => {
+searchInput.addEventListener("keyup", async () => {
 
-const query = input.value.trim()
+const query = searchInput.value.trim()
 
-if(query.length === 0){
+if(query === ""){
 document.getElementById("results").innerHTML=""
 return
 }
@@ -29,29 +29,29 @@ display(data)
 
 function display(data){
 
-const container = document.getElementById("results")
+const results = document.getElementById("results")
 
-container.innerHTML=""
+results.innerHTML=""
 
-if(!data || data.length === 0){
-container.innerHTML="No results found"
+if(!data || data.length===0){
+results.innerHTML="No results found"
 return
 }
 
 data.forEach(t=>{
 
-container.innerHTML += `
+results.innerHTML += `
 <div class="card">
 
 <h3>${t.full_name}</h3>
 
 Phone: ${t.phone}<br>
 Email: ${t.email}<br>
-
 Property: ${t.property_name}
 
 </div>
 `
+
 })
 
 }
