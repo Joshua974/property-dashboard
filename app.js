@@ -49,7 +49,29 @@ Email: ${t.email}<br>
 Property: ${t.property_name}
 
 </div>
+‘
+async function loadRentAlerts(){
+
+const { data } = await supabase
+.from("alerts")
+.select("*")
+.eq("type","rent_due")
+
+const container = document.getElementById("rentAlerts")
+
+container.innerHTML=""
+
+data.forEach(a=>{
+
+container.innerHTML += `
+<div style="color:red">
+⚠ Rent Due: ${a.message}
+</div>
 `
+
+})
+
+}
 
 })
 
