@@ -97,3 +97,5 @@ container.innerHTML += `
 })
 
 }
+loadRentAlerts()
+loadContractAlerts()
