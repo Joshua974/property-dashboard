@@ -72,7 +72,28 @@ container.innerHTML += `
 })
 
 }
+async function loadContractAlerts(){
 
+const { data } = await supabase
+.from("alerts")
+.select("*")
+.eq("type","contract_expiry")
+
+const container = document.getElementById("contractAlerts")
+
+container.innerHTML=""
+
+data.forEach(a=>{
+
+container.innerHTML += `
+<div style="color:orange">
+⚠ Contract Expiring: ${a.message}
+</div>
+`
+
+})
+
+}
 })
 
 }
