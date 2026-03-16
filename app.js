@@ -5,13 +5,14 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
 const searchInput = document.getElementById("search")
+const results = document.getElementById("results")
 
 searchInput.addEventListener("keyup", async () => {
 
 const query = searchInput.value.trim()
 
 if(query === ""){
-document.getElementById("results").innerHTML=""
+results.innerHTML = ""
 return
 }
 
@@ -20,8 +21,8 @@ const { data, error } = await supabase
 .select("*")
 .ilike("full_name", `%${query}%`)
 
-console.log(data)
-console.log(error)
+console.log("DATA:", data)
+console.log("ERROR:", error)
 
 display(data)
 
@@ -29,19 +30,17 @@ display(data)
 
 function display(data){
 
-const results = document.getElementById("results")
-
-results.innerHTML=""
+results.innerHTML = ""
 
 if(!data || data.length === 0){
-results.innerHTML="No results found"
+results.innerHTML = "No results found"
 return
 }
 
-data.forEach(t=>{
+data.forEach(t => {
 
 results.innerHTML += `
-<div class="card">
+<div style="border:1px solid #ddd;padding:15px;margin-top:10px;border-radius:6px">
 
 <h3>${t.full_name}</h3>
 
