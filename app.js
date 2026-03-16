@@ -21,8 +21,8 @@ const { data, error } = await supabase
 .select("*")
 .ilike("full_name", `%${query}%`)
 
-console.log("DATA:", data)
-console.log("ERROR:", error)
+console.log(data)
+console.log(error)
 
 display(data)
 
@@ -40,16 +40,21 @@ return
 data.forEach(t => {
 
 results.innerHTML += `
-<div style="border:1px solid #ddd;padding:15px;margin-top:10px;border-radius:6px">
+<div class="tenant-card">
 
 <h3>${t.full_name}</h3>
 
-Phone: ${t.phone}<br>
-Email: ${t.email}<br>
-Property: ${t.property_name}
+<p><b>Phone:</b> ${t.phone}</p>
+<p><b>Email:</b> ${t.email}</p>
+<p><b>Property:</b> ${t.property_name}</p>
 
 </div>
-‘
+`
+
+})
+
+}
+
 async function loadRentAlerts(){
 
 const { data } = await supabase
@@ -59,19 +64,24 @@ const { data } = await supabase
 
 const container = document.getElementById("rentAlerts")
 
-container.innerHTML=""
+container.innerHTML = ""
+
+if(!data) return
 
 data.forEach(a=>{
 
 container.innerHTML += `
-<div style="color:red">
-⚠ Rent Due: ${a.message}
+<div class="alert">
+
+⚠ ${a.message}
+
 </div>
 `
 
 })
 
 }
+
 async function loadContractAlerts(){
 
 const { data } = await supabase
@@ -81,21 +91,23 @@ const { data } = await supabase
 
 const container = document.getElementById("contractAlerts")
 
-container.innerHTML=""
+container.innerHTML = ""
+
+if(!data) return
 
 data.forEach(a=>{
 
 container.innerHTML += `
-<div style="color:orange">
-⚠ Contract Expiring: ${a.message}
+<div class="alert">
+
+⚠ ${a.message}
+
 </div>
 `
 
 })
 
 }
-})
 
-}
 loadRentAlerts()
 loadContractAlerts()
