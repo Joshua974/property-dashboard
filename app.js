@@ -17,7 +17,9 @@ return
 const { data, error } = await supabase
 .from("tenant_overview")
 .select("*")
-.or(`full_name.ilike.%${query}%,street_name.ilike.%${query}%,unit_number.ilike.%${query}%`)
+.or(
+`full_name.ilike.%${query}%,phone.ilike.%${query}%,property_name.ilike.%${query}%,street_name.ilike.%${query}%,unit_number.ilike.%${query}%`
+)
 
 if(error){
 console.error(error)
